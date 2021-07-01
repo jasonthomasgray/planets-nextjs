@@ -1,0 +1,4 @@
+config/jest/*
+jest.config.js
+setupTests.js
+next.config.js
