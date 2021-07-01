@@ -1,7 +1,7 @@
 import { testApiHandler } from 'next-test-api-route-handler';
 // Import the handler under test from the pages/api directory
 import type { PageConfig } from 'next';
-import endpoint, { config } from '../../pages/api/planets';
+import endpoint, { config } from '../../pages/api/bodies';
 
 // Respect the Next.js config object if it's exported
 const handler: typeof endpoint & { config?: PageConfig } = endpoint;
