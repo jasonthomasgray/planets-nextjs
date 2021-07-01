@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 
 export default function Home(): React.ReactNode {
+  const bodies = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
   return (
     <div className={styles.container}>
       <Head>
@@ -14,21 +15,22 @@ export default function Home(): React.ReactNode {
         <h1 className={styles.title}>
           Celestial Bodies of the Solar System
         </h1>
-
         <div className={styles.grid}>
-          <div className={styles.card}>
-            <h2>Planet Name</h2>
-            <Image src="/images/planet.jpg" alt="Image of Planet" width={100} height={100} />
-            <dl>
-              <dt>Age</dt>
-              <dd>5.03 Billion Years Old</dd>
-              <dt>Solar Mass</dt>
-              <dd>
-                0.03 &times;10
-                <sup>-6</sup>
-              </dd>
-            </dl>
-          </div>
+          {bodies.map((key) => (
+            <div className={styles.card} key={key}>
+              <h2>Planet Name</h2>
+              <Image src="/images/planet.jpg" alt="Image of Planet" width={100} height={100} />
+              <dl>
+                <dt>Age</dt>
+                <dd>5.03 Billion Years Old</dd>
+                <dt>Solar Mass</dt>
+                <dd>
+                  0.03 &times;10
+                  <sup>-6</sup>
+                </dd>
+              </dl>
+            </div>
+          ))}
         </div>
       </main>
 
