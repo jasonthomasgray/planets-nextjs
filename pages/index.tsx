@@ -1,9 +1,37 @@
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 
-export default function Home(): React.ReactNode {
-  const bodies = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+type BodyData = {
+  name: string;
+  picture: string;
+  age: number;
+  solarMass: number;
+}
+
+export const getStaticProps: GetStaticProps = () => ({
+  props: {
+    bodies: [{
+      name: 'Mercury',
+      picture: '/images/mercury.jpeg',
+      age: 4.503,
+      solarMass: 0.166014,
+    },
+    {
+      name: 'Venus',
+      picture: '/images/venus.jpeg',
+      age: 4.503,
+      solarMass: 2.08106272,
+    }],
+  },
+});
+
+export default function Home({
+  bodies,
+}: {
+  bodies: BodyData[];
+}): React.ReactNode {
   return (
     <div className={styles.container}>
       <Head>
@@ -16,17 +44,30 @@ export default function Home(): React.ReactNode {
           Celestial Bodies of the Solar System
         </h1>
         <div className={styles.grid}>
-          {bodies.map((key) => (
-            <div className={styles.card} key={key}>
-              <h2>Planet Name</h2>
-              <Image src="/images/planet.jpg" alt="Image of Planet" width={100} height={100} />
+          {bodies.map(({
+            name,
+            picture,
+            age,
+            solarMass,
+          }) => (
+            <div className={styles.card} key={name}>
+              <h2>{name}</h2>
+              <Image src={picture} alt="Image of {name}" width={100} height={100} />
               <dl>
                 <dt>Age</dt>
-                <dd>5.03 Billion Years Old</dd>
+                <dd>
+                  {age}
+                  {' '}
+                  Billion Years Old
+                </dd>
                 <dt>Solar Mass</dt>
                 <dd>
-                  0.03 &times;10
+                  {solarMass}
+                  &times;10
                   <sup>-6</sup>
+                  {' '}
+                  M
+                  <sub>☉</sub>
                 </dd>
               </dl>
             </div>
