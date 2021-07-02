@@ -1,17 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-type PlanetData = {
+export type BodyData = {
   name: string;
   picture: string;
   age: number
   solarMass: number;
 }
 
-type Data = {
-  data: PlanetData[];
+export type Response<Data> = {
+  // this nesting leaves room for response metadata (paging) without breaking BC
+  data: Data;
 }
 
-export function getBodiesData() {
+export function getBodiesData(): BodyData[] {
   return [
     {
       name: 'Mercury',
@@ -96,7 +97,7 @@ export function getBodiesData() {
 
 export default function handler(
   _req: NextApiRequest,
-  res: NextApiResponse<Data>,
+  res: NextApiResponse<Response<BodyData[]>>,
 ): void {
   res.status(200).json({
     data: getBodiesData(),
