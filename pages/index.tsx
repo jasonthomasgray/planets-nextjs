@@ -79,7 +79,7 @@ export default function Home({
   const {
     data,
     error,
-  } = useSWR<Response<BodyData[]>, any>(
+  } = useSWR<Response<BodyData[]>, Error>(
     '/api/bodies',
     fetcher,
     { initialData: { data: bodies } },
